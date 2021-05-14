@@ -11,47 +11,47 @@ namespace ShopBridgeApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TblitemsController : ControllerBase
+    public class ItemsController : ControllerBase
     {
-        private readonly ModelContext _context;
+        private readonly VsntDbContext _context;
 
-        public TblitemsController(ModelContext context)
+        public ItemsController(VsntDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Tblitems
+        // GET: api/Items
         [HttpGet]
-        public async Task<ActionResult<List<Tblitem>>> GetTblitems()
+        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            return await _context.Tblitems.ToListAsync();
+            return await _context.Items.ToListAsync();
         }
 
-        // GET: api/Tblitems/5
+        // GET: api/Items/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Tblitem>> GetTblitem(decimal id)
+        public async Task<ActionResult<Item>> GetItem(int id)
         {
-            var tblitem = await _context.Tblitems.FindAsync(id);
+            var item = await _context.Items.FindAsync(id);
 
-            if (tblitem == null)
+            if (item == null)
             {
                 return NotFound();
             }
 
-            return tblitem;
+            return item;
         }
 
-        // PUT: api/Tblitems/5
+        // PUT: api/Items/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTblitem(decimal id, Tblitem tblitem)
+        public async Task<IActionResult> PutItem(int id, Item item)
         {
-            if (id != tblitem.ItemId)
+            if (id != item.ItemId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(tblitem).State = EntityState.Modified;
+            _context.Entry(item).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace ShopBridgeApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TblitemExists(id))
+                if (!ItemExists(id))
                 {
                     return NotFound();
                 }
@@ -72,19 +72,19 @@ namespace ShopBridgeApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Tblitems
+        // POST: api/Items
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Tblitem>> PostTblitem(Tblitem tblitem)
+        public async Task<ActionResult<Item>> PostItem(Item item)
         {
-            _context.Tblitems.Add(tblitem);
+            _context.Items.Add(item);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (TblitemExists(tblitem.ItemId))
+                if (ItemExists(item.ItemId))
                 {
                     return Conflict();
                 }
@@ -94,28 +94,28 @@ namespace ShopBridgeApi.Controllers
                 }
             }
 
-            return CreatedAtAction("GetTblitem", new { id = tblitem.ItemId }, tblitem);
+            return CreatedAtAction("GetItem", new { id = item.ItemId }, item);
         }
 
-        // DELETE: api/Tblitems/5
+        // DELETE: api/Items/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTblitem(decimal id)
+        public async Task<IActionResult> DeleteItem(int id)
         {
-            var tblitem = await _context.Tblitems.FindAsync(id);
-            if (tblitem == null)
+            var item = await _context.Items.FindAsync(id);
+            if (item == null)
             {
                 return NotFound();
             }
 
-            _context.Tblitems.Remove(tblitem);
+            _context.Items.Remove(item);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TblitemExists(decimal id)
+        private bool ItemExists(int id)
         {
-            return _context.Tblitems.Any(e => e.ItemId == id);
+            return _context.Items.Any(e => e.ItemId == id);
         }
     }
 }

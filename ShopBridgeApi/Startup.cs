@@ -34,9 +34,9 @@ namespace ShopBridgeApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShopBridgeApi", Version = "v1" });
             });
-            services.AddDbContext<ModelContext>(options =>
-            options.UseOracle(
-            Configuration.GetConnectionString("ModelContext")));
+            services.AddDbContext<VsntDbContext>(options =>
+            options.UseSqlServer(
+            Configuration.GetConnectionString("VsntDbContext")));
 
 
         }
