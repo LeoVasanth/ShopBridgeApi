@@ -44,7 +44,7 @@ namespace ShopBridgeApi.Controllers
         }
 
         // PUT: api/Items/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
 
         [HttpPut("{id}")]
     
@@ -77,7 +77,7 @@ namespace ShopBridgeApi.Controllers
         }
 
         // POST: api/Items
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
         [HttpPost]
     
         public async Task<ActionResult<Item>> PostItem(Item item)
