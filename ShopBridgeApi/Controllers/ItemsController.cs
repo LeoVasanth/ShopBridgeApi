@@ -22,6 +22,7 @@ namespace ShopBridgeApi.Controllers
 
         // GET: api/Items
         [HttpGet]
+        
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
             return await _context.Items.ToListAsync();
@@ -29,6 +30,7 @@ namespace ShopBridgeApi.Controllers
 
         // GET: api/Items/5
         [HttpGet("{id}")]
+       
         public async Task<ActionResult<Item>> GetItem(int id)
         {
             var item = await _context.Items.FindAsync(id);
@@ -43,7 +45,9 @@ namespace ShopBridgeApi.Controllers
 
         // PUT: api/Items/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
+    
         public async Task<IActionResult> PutItem(int id, Item item)
         {
             if (id != item.ItemId)
@@ -75,6 +79,7 @@ namespace ShopBridgeApi.Controllers
         // POST: api/Items
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+    
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
             _context.Items.Add(item);
@@ -99,6 +104,7 @@ namespace ShopBridgeApi.Controllers
 
         // DELETE: api/Items/5
         [HttpDelete("{id}")]
+    
         public async Task<IActionResult> DeleteItem(int id)
         {
             var item = await _context.Items.FindAsync(id);
