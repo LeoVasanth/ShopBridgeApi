@@ -38,7 +38,7 @@ namespace ShopBridgeApi
             });
             services.AddDbContext<VsntDbContext>(options =>
             options.UseSqlServer(
-            Configuration.GetConnectionString("Server=tcp:vsntserver.database.windows.net,1433;Initial Catalog=VsntDb;Persist Security Info=False;User ID=vasanth;Password=Ramhariviki1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False")));
+            Configuration.GetConnectionString("VsntDbContext")));
 
 
         }
