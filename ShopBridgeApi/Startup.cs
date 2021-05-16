@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ShopBridgeApi.Models;
+using System.IO;
 
 namespace ShopBridgeApi
 {
@@ -33,10 +34,11 @@ namespace ShopBridgeApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShopBridgeApi", Version = "v1" });
+
             });
             services.AddDbContext<VsntDbContext>(options =>
             options.UseSqlServer(
-            Configuration.GetConnectionString("VsntDbContext")));
+            Configuration.GetConnectionString("Server=tcp:vsntserver.database.windows.net,1433;Initial Catalog=VsntDb;Persist Security Info=False;User ID=vasanth;Password=Ramhariviki1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False")));
 
 
         }
@@ -50,7 +52,8 @@ namespace ShopBridgeApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => 
                 { c.SwaggerEndpoint("/swagger/v1/swagger.json", "ShopBridgeApi v1");
-                    c.RoutePrefix = string.Empty;
+                   // c.RoutePrefix = string.Empty;
+                   
                 }
                 ) ;
             }

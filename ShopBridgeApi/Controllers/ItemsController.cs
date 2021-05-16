@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net;
+using System.Web.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopBridgeApi.Models;
+using Newtonsoft.Json;
 
 namespace ShopBridgeApi.Controllers
 {
@@ -22,7 +26,7 @@ namespace ShopBridgeApi.Controllers
 
         // GET: api/Items
         [HttpGet]
-        
+
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
             return await _context.Items.ToListAsync();
